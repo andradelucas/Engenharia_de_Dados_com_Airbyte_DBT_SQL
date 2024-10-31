@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: media_vendas_por_cliente
+    description: "View que retorna a media das vendas do RJ e SP."
+    tests:
+      - unique:
+          column_name: cliente_id
+      - not_null:
+          column_name: cliente_id
+      - not_null:
+          column_name: media_vendas
+    columns:
+      - name: cliente_id
+        description: "Identificador único do cliente."
+      - name: nome
+        description: "Nome completo do cliente."
+      - name: estado
+        description: "Estado onde o cliente reside."
+        tests:
+          - accepted_values:
+              values: ['SP', 'RJ']
+      - name: media_vendas
+        description: "Valor medio de vendas por cliente."
+
+  - name: total_vendas_por_cliente_sudeste
+    description: "View que retorna o total de vendas para clientes do sudeste."
+    tests:
+      - unique:
+          column_name: cliente_id
+      - not_null:
+          column_name: cliente_id
+      - not_null:
+          column_name: nome
+      - not_null:
+          column_name: cidade
+      - not_null:
+          column_name: estado
+      - not_null:
+          column_name: total_vendas
+    columns:
+      - name: cliente_id
+        description: "Identificador único do cliente."
+      - name: nome
+        description: "Nome completo do cliente."
+      - name: cidade
+        description: "Cidade onde o cliente reside."
+      - name: estado
+        description: "Estado onde o cliente reside."
+        tests:
+          - accepted_values:
+              values: ['SP', 'RJ', 'MG', 'ES']
+      - name: total_vendas
+        description: "Total gasto pelos clientes."
+
+  - name: total_vendas_por_cliente
+    description: "View que retorna o total gastos pelos clientes."
+    tests:
+      - unique:
+          column_name: cliente_id
+      - not_null:
+          column_name: cliente_id
+      - not_null:
+          column_name: nome
+      - not_null:
+          column_name: estado
+      - not_null:
+          column_name: total_vendas
+    columns:
+      - name: cliente_id
+        description: "Identificador único do cliente."
+      - name: nome
+        description: "Nome completo do cliente."
+      - name: estado
+        description: "Estado onde o cliente reside (SP, RJ)."
+        tests:
+          - accepted_values:
+              values: ['SP', 'RJ']
+      - name: total_vendas
+        description: "Valor total gasto por cliente."

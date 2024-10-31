@@ -1,0 +1,4 @@
+version: 2
+data_tests:
+  - name: less_than_vendas_valor
+    description: Pela regra de negocio devem ser tragos apenas valores de vendas que sejam menores que 450 este teste traz se temos algum valor maior ou igual a 450 para tratarmos
